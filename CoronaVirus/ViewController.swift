@@ -108,11 +108,9 @@ extension ViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             module?.searchTextEntered(searchText: searchBar.text ?? "")
+            DispatchQueue.main.async {
+                self.searchBar.searchTextField.resignFirstResponder()
+            }
         }
-    }
-
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.module?.searchTextEntered(searchText: "")
-        searchBar.searchTextField.resignFirstResponder()
     }
 }
