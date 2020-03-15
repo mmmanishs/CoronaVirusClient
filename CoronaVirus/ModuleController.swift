@@ -11,18 +11,19 @@ import UIKit
 protocol ControllableViewController: class {
     func loading()
     func errorLoading()
-    func update(viewModel: ModuleController.ViewModel)
+    func update(viewModel: ViewModel)
 }
 class ModuleController {
     weak var viewController: ControllableViewController?
     let remoteDataManager = RemoteDataManager()
-    
+    var remoteModel: RemoteDataManager.CountryList?
+
     init(viewController: ControllableViewController) {
         self.viewController = viewController
     }
 
     func viewControllerInitialLoad() {
-        viewController?.loading()
+        refreshButtonTapped()
     }
 
     func refreshButtonTapped() {
@@ -30,6 +31,7 @@ class ModuleController {
         remoteDataManager.fetchData { [weak self]  result in
             switch result {
             case .success(let remoteModel):
+                self?.remoteModel = remoteModel
                 self?.viewController?.update(viewModel: ViewModel(remoteModel: remoteModel))
             case .failure(_):
                 self?.viewController?.loading()
@@ -37,34 +39,20 @@ class ModuleController {
         }
     }
 
+    func searchTextEntered(searchText: String) {
+        var filteredRowModel = remoteModel
+        if !searchText.isEmpty {
+            filteredRowModel = remoteModel?.filter { $0.country.uppercased().contains(searchText.uppercased())} ?? []
+        }
+        let viewModel = ViewModel(remoteModel: filteredRowModel ?? [])
+        viewController?.update(viewModel: viewModel)
+    }
+
     enum State {
         case loading
         case loaded(ViewModel)
     }
-
-    struct ViewModel {
-        let rows: [Row]
-
-        var numberOfRows: Int {
-            return rows.count
-        }
-        struct Row {
-            let country: String
-            let cases, todayCases, deaths, todayDeaths: Int
-            let recovered, critical: Int
-        }
-    }
 }
 
-extension ModuleController.ViewModel {
-    init(remoteModel: RemoteDataManager.CountryList) {
-        var rows = [ModuleController.ViewModel.Row]()
-        for countryCase in remoteModel {
-            let row = ModuleController.ViewModel.Row(country: countryCase.country, cases: countryCase.cases, todayCases: countryCase.todayCases, deaths: countryCase.deaths, todayDeaths: countryCase.todayDeaths, recovered: countryCase.recovered, critical: countryCase.critical)
-            rows.append(row)
-        }
-        self.rows = rows
-    }
-}
 
 
