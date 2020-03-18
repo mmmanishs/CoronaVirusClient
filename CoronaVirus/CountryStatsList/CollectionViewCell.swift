@@ -1,5 +1,5 @@
 //
-//  TableViewCell.swift
+//  CollectionViewCell.swift
 //  CoronaVirus
 //
 //  Created by Manish Singh on 3/14/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewCell: UITableViewCell {
+class CountryStatsCell: UICollectionViewCell {
     @IBOutlet var countryName: UILabel!
     @IBOutlet var countryFlag: UILabel!
     @IBOutlet var cases: UILabel!
@@ -16,25 +16,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet var recovered: UILabel!
     @IBOutlet var critical: UILabel!
 
-    func updateCell(row: ViewModel.Row) {
-        countryName.text = row.country
-        countryFlag.text = row.country.countryFlag
-        cases.text = "\(String(row.cases)) (\(String(row.todayCases)))"
-        deaths.text = "\(String(row.deaths)) (\(String(row.todayDeaths)))"
-        recovered.text = String(row.recovered)
-        critical.text = String(row.critical)
-    }
-}
-
-class CollectionViewCell: UICollectionViewCell {
-    @IBOutlet var countryName: UILabel!
-    @IBOutlet var countryFlag: UILabel!
-    @IBOutlet var cases: UILabel!
-    @IBOutlet var deaths: UILabel!
-    @IBOutlet var recovered: UILabel!
-    @IBOutlet var critical: UILabel!
-
-    func updateCell(row: ViewModel.Row) {
+    func updateCell(row: CountryListViewController.ViewModel.Row) {
         countryName.text = row.country
         countryFlag.text = row.country.countryFlag
         cases.text = "\(String(row.cases)) (\(String(row.todayCases)))"

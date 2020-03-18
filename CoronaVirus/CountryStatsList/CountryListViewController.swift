@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CountryListViewController.swift
 //  CoronaVirus
 //
 //  Created by Manish Singh on 3/14/20.
@@ -9,8 +9,8 @@
 import UIKit
 
 
-class ViewController: UIViewController {
-    var module: ModuleController?
+class CountryListViewController: UIViewController {
+    var module: CountryListModuleController?
     var viewModel: ViewModel = ViewModel(rows: [])
 
     var timer: Timer?
@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationTitleView()
-        module = ModuleController(viewController: self)
+        module = CountryListModuleController(viewController: self)
         DispatchQueue.global().async {
             self.module?.viewControllerInitialLoad()
         }
@@ -50,13 +50,13 @@ class ViewController: UIViewController {
         }
     }
 }
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension CountryListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.numberOfRows
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CountryStatsCell", for: indexPath) as! CountryStatsCell
          cell.updateCell(row: viewModel.rows[indexPath.row])
         return cell
     }
@@ -65,32 +65,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             collectionView.deselectItem(at: indexPath, animated: true)
             searchBar.searchTextField.resignFirstResponder()
         }
-
-//        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//            return CGSize(width: 400, height: 120)
-//        }
-
 }
-//extension ViewController: UITableViewDelegate, UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return viewModel.numberOfRows
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell") as! TableViewCell
-//        cell.updateCell(row: viewModel.rows[indexPath.row])
-//        return cell
-//    }
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//        searchBar.searchTextField.resignFirstResponder()
-//    }
-//
-//
-//}
-
-extension ViewController: ControllableViewController {
+extension CountryListViewController: ControllableViewController {
     func loading() {
         DispatchQueue.main.async {
             self.activityIndicatorView.isHidden = false
@@ -115,7 +91,7 @@ extension ViewController: ControllableViewController {
     }
 }
 
-extension ViewController: UISearchBarDelegate {
+extension CountryListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] timer in

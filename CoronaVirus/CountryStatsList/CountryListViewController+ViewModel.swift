@@ -8,23 +8,26 @@
 
 import Foundation
 
-struct ViewModel {
-    let rows: [Row]
+extension CountryListViewController {
+    struct ViewModel {
+        let rows: [Row]
 
-    var numberOfRows: Int {
-        return rows.count
-    }
-    struct Row {
-        let country: String
-        let cases, todayCases, deaths, todayDeaths: Int
-        let recovered, critical: Int
+        var numberOfRows: Int {
+            return rows.count
+        }
+        struct Row {
+            let country: String
+            let cases, todayCases, deaths, todayDeaths: Int
+            let recovered, critical: Int
+        }
     }
 }
-extension ViewModel {
+
+extension CountryListViewController.ViewModel {
     init(remoteModel: RemoteDataManager.CountryList) {
-        var rows = [ViewModel.Row]()
+        var rows = [CountryListViewController.ViewModel.Row]()
         for countryCase in remoteModel {
-            let row = ViewModel.Row(country: countryCase.country, cases: countryCase.cases, todayCases: countryCase.todayCases, deaths: countryCase.deaths, todayDeaths: countryCase.todayDeaths, recovered: countryCase.recovered, critical: countryCase.critical)
+            let row = CountryListViewController.ViewModel.Row(country: countryCase.country, cases: countryCase.cases, todayCases: countryCase.todayCases, deaths: countryCase.deaths, todayDeaths: countryCase.todayDeaths, recovered: countryCase.recovered, critical: countryCase.critical)
             rows.append(row)
         }
         self.rows = rows

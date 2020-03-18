@@ -1,5 +1,5 @@
 //
-//  ModuleController.swift
+//  CountryListModuleController.swift
 //  CoronaVirus
 //
 //  Created by Manish Singh on 3/14/20.
@@ -11,9 +11,9 @@ import UIKit
 protocol ControllableViewController: class {
     func loading()
     func errorLoading()
-    func update(viewModel: ViewModel)
+    func update(viewModel: CountryListViewController.ViewModel)
 }
-class ModuleController {
+class CountryListModuleController {
     weak var viewController: ControllableViewController?
     let remoteDataManager = RemoteDataManager()
     var remoteModel: RemoteDataManager.CountryList?
@@ -32,7 +32,7 @@ class ModuleController {
             switch result {
             case .success(let remoteModel):
                 self?.remoteModel = remoteModel
-                self?.viewController?.update(viewModel: ViewModel(remoteModel: remoteModel))
+                self?.viewController?.update(viewModel: CountryListViewController.ViewModel(remoteModel: remoteModel))
             case .failure(_):
                 self?.viewController?.loading()
             }
@@ -44,13 +44,13 @@ class ModuleController {
         if !searchText.isEmpty {
             filteredRowModel = remoteModel?.filter { $0.country.uppercased().contains(searchText.uppercased())} ?? []
         }
-        let viewModel = ViewModel(remoteModel: filteredRowModel ?? [])
+        let viewModel = CountryListViewController.ViewModel(remoteModel: filteredRowModel ?? [])
         viewController?.update(viewModel: viewModel)
     }
 
     enum State {
         case loading
-        case loaded(ViewModel)
+        case loaded(CountryListViewController.ViewModel)
     }
 }
 
