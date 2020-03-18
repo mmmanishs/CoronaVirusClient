@@ -12,7 +12,8 @@ class RemoteDataManager {
     enum APIError: Error {
         case apiCallFailed
     }
-    let url = URL(string: "https://corona.lmao.ninja/countries")!
+//    let url = URL(string: "https://corona.lmao.ninja/countries")!
+    let url = URL(string: "https://coronavirus-19-api.herokuapp.com/countries")!
 
     func fetchData(completionHandler: @escaping(Result<CountryList, APIError>) -> Void) {
         var request = URLRequest(url: url)

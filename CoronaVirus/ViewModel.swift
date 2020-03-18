@@ -30,3 +30,30 @@ extension ViewModel {
         self.rows = rows
     }
 }
+
+struct AppSettings: Codable {
+    var bookMarkedCountries: [String]
+}
+
+extension AppSettings {
+    static var appSettingsDirectory: URL {
+        // find all possible documents directories for this user
+        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        return path.appendingPathComponent("app-settings")
+    }
+
+    static func load() -> AppSettings {
+        guard let data = try? Data(contentsOf: AppSettings.appSettingsDirectory) else {
+            return AppSettings(bookMarkedCountries: [])
+        }
+        return try! JSONDecoder().decode(AppSettings.self, from: data)
+    }
+
+    func save() {
+        guard let data = try? JSONEncoder().encode(self) else {
+            return
+        }
+        try? data.write(to: AppSettings.appSettingsDirectory)
+    }
+}
+
