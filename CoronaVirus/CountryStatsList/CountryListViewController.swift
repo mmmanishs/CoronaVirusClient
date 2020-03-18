@@ -10,6 +10,7 @@ import UIKit
 
 
 class CountryListViewController: UIViewController {
+    let noOfCellsInRow = 2
     var module: CountryListModuleController?
     var viewModel: ViewModel = ViewModel(rows: [])
 
@@ -50,7 +51,19 @@ class CountryListViewController: UIViewController {
         }
     }
 }
-extension CountryListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension CountryListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+        let totalSpace = flowLayout.sectionInset.left
+            + flowLayout.sectionInset.right
+            + (flowLayout.minimumInteritemSpacing * CGFloat(noOfCellsInRow - 1))
+
+        let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
+
+        return CGSize(width: size, height: 120)
+    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.numberOfRows
     }

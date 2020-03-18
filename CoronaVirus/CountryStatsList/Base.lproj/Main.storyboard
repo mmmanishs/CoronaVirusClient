@@ -63,8 +63,8 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P8J-Y9-2Sm">
                                                             <rect key="frame" x="20" y="0.0" width="99.5" height="119"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="India" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0kq-DH-owG">
-                                                                    <rect key="frame" x="8" y="71" width="37.5" height="15.5"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="India" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0kq-DH-owG">
+                                                                    <rect key="frame" x="8" y="71" width="89.5" height="15.5"/>
                                                                     <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -82,6 +82,7 @@
                                                                 <constraint firstItem="0kq-DH-owG" firstAttribute="leading" secondItem="P8J-Y9-2Sm" secondAttribute="leading" constant="8" id="LTI-Gv-4FO"/>
                                                                 <constraint firstItem="E8A-9R-W9B" firstAttribute="top" secondItem="P8J-Y9-2Sm" secondAttribute="top" constant="8" id="NnP-mx-Whx"/>
                                                                 <constraint firstItem="0kq-DH-owG" firstAttribute="top" secondItem="E8A-9R-W9B" secondAttribute="bottom" constant="8" id="mFf-rF-zde"/>
+                                                                <constraint firstAttribute="trailing" secondItem="0kq-DH-owG" secondAttribute="trailing" constant="2" id="qcZ-a0-kj1"/>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xFa-Hr-KHc">
