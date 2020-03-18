@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     var viewModel: ViewModel = ViewModel(rows: [])
 
     var timer: Timer?
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var activityIndicatorView: UIActivityIndicatorView!
 
@@ -50,37 +50,57 @@ class ViewController: UIViewController {
         }
     }
 }
-
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.numberOfRows
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell") as! TableViewCell
-        cell.updateCell(row: viewModel.rows[indexPath.row])
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
+         cell.updateCell(row: viewModel.rows[indexPath.row])
         return cell
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        searchBar.searchTextField.resignFirstResponder()
-    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            collectionView.deselectItem(at: indexPath, animated: true)
+            searchBar.searchTextField.resignFirstResponder()
+        }
 
+//        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//            return CGSize(width: 400, height: 120)
+//        }
 
 }
+//extension ViewController: UITableViewDelegate, UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return viewModel.numberOfRows
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell") as! TableViewCell
+//        cell.updateCell(row: viewModel.rows[indexPath.row])
+//        return cell
+//    }
+//
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        tableView.deselectRow(at: indexPath, animated: true)
+//        searchBar.searchTextField.resignFirstResponder()
+//    }
+//
+//
+//}
 
 extension ViewController: ControllableViewController {
     func loading() {
         DispatchQueue.main.async {
             self.activityIndicatorView.isHidden = false
-            self.tableView.alpha = 0.8
+            self.collectionView.alpha = 0.8
         }
     }
 
     func errorLoading() {
         DispatchQueue.main.async {
-            self.tableView.alpha = 1.0
+            self.collectionView.alpha = 1.0
             self.activityIndicatorView.isHidden = true
         }
     }
@@ -88,8 +108,8 @@ extension ViewController: ControllableViewController {
     func update(viewModel: ViewModel) {
         self.viewModel = viewModel
         DispatchQueue.main.async {
-            self.tableView.alpha = 1.0
-            self.tableView.reloadData()
+            self.collectionView.alpha = 1.0
+            self.collectionView.reloadData()
             self.activityIndicatorView.isHidden = true
         }
     }
