@@ -26,18 +26,25 @@
                                     <outlet property="delegate" destination="p5D-v4-oWm" id="8TC-ds-COR"/>
                                 </connections>
                             </searchBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text=".." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ppq-EK-wea">
+                                <rect key="frame" x="0.0" y="144" width="414" height="17.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="17"/>
+                                <color key="textColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tv4-qw-vb7">
-                                <rect key="frame" x="0.0" y="144" width="414" height="752"/>
+                                <rect key="frame" x="0.0" y="161.5" width="414" height="734.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yz4-rB-AzW">
                                     <size key="itemSize" width="414" height="120"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="headerReferenceSize" width="50" height="30"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CountryStatsCell" id="Cob-ZS-ygV" customClass="CountryStatsCell" customModule="CoronaVirus" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
+                                        <rect key="frame" x="0.0" y="30" width="414" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="P86-xg-IOY">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
@@ -79,6 +86,7 @@
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstItem="E8A-9R-W9B" firstAttribute="leading" secondItem="P8J-Y9-2Sm" secondAttribute="leading" constant="8" id="HIh-xc-3XL"/>
+                                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="E8A-9R-W9B" secondAttribute="trailing" constant="20" symbolic="YES" id="KWW-As-SRo"/>
                                                                 <constraint firstItem="0kq-DH-owG" firstAttribute="leading" secondItem="P8J-Y9-2Sm" secondAttribute="leading" constant="8" id="LTI-Gv-4FO"/>
                                                                 <constraint firstItem="E8A-9R-W9B" firstAttribute="top" secondItem="P8J-Y9-2Sm" secondAttribute="top" constant="8" id="NnP-mx-Whx"/>
                                                                 <constraint firstItem="0kq-DH-owG" firstAttribute="top" secondItem="E8A-9R-W9B" secondAttribute="bottom" constant="8" id="mFf-rF-zde"/>
@@ -205,6 +213,7 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="414" height="120"/>
                                         <connections>
+                                            <outlet property="bookmarkView" destination="2e2-wy-x0h" id="Ro2-2m-2V9"/>
                                             <outlet property="cases" destination="u0Z-Z3-qtm" id="sjQ-Rn-8nU"/>
                                             <outlet property="countryFlag" destination="E8A-9R-W9B" id="Bjt-TW-BNP"/>
                                             <outlet property="countryName" destination="0kq-DH-owG" id="c8k-rH-B3j"/>
@@ -214,6 +223,26 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="CountryStatsSectionHeader" id="zG0-dy-GRu" customClass="CountryStatsSectionHeader" customModule="CoronaVirus" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4Y-nJ-OQx">
+                                            <rect key="frame" x="12" y="6.5" width="53" height="17.5"/>
+                                            <fontDescription key="fontDescription" name="Copperplate-Bold" family="Copperplate" pointSize="17"/>
+                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="y4Y-nJ-OQx" firstAttribute="leading" secondItem="zG0-dy-GRu" secondAttribute="leading" constant="12" id="DPG-t7-y3e"/>
+                                        <constraint firstItem="y4Y-nJ-OQx" firstAttribute="centerY" secondItem="zG0-dy-GRu" secondAttribute="centerY" id="QRM-EB-mx9"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="sectionHeaderlabel" destination="y4Y-nJ-OQx" id="Mgr-3G-uVw"/>
+                                    </connections>
+                                </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="p5D-v4-oWm" id="hTZ-sL-MIz"/>
                                     <outlet property="delegate" destination="p5D-v4-oWm" id="4gk-lB-rwc"/>
@@ -226,22 +255,32 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="tv4-qw-vb7" firstAttribute="top" secondItem="RJR-EN-HcG" secondAttribute="bottom" id="3lz-IH-IsN"/>
                             <constraint firstItem="nUV-VC-5gz" firstAttribute="centerX" secondItem="dy3-1r-Zy1" secondAttribute="centerX" id="92t-fU-fOI"/>
                             <constraint firstItem="nUV-VC-5gz" firstAttribute="centerY" secondItem="dy3-1r-Zy1" secondAttribute="centerY" id="HrD-ss-EwI"/>
                             <constraint firstAttribute="trailing" secondItem="tv4-qw-vb7" secondAttribute="trailing" id="M79-V6-FGl"/>
+                            <constraint firstItem="tv4-qw-vb7" firstAttribute="top" secondItem="Ppq-EK-wea" secondAttribute="bottom" id="bx5-Tj-kqe"/>
+                            <constraint firstAttribute="trailing" secondItem="Ppq-EK-wea" secondAttribute="trailing" id="l4r-Ld-D0A"/>
                             <constraint firstItem="tv4-qw-vb7" firstAttribute="leading" secondItem="dy3-1r-Zy1" secondAttribute="leading" id="lQE-1P-TPe"/>
                             <constraint firstAttribute="bottom" secondItem="tv4-qw-vb7" secondAttribute="bottom" id="oXj-Hv-UoR"/>
+                            <constraint firstItem="Ppq-EK-wea" firstAttribute="top" secondItem="RJR-EN-HcG" secondAttribute="bottom" id="qZL-xu-WkL"/>
                             <constraint firstItem="RJR-EN-HcG" firstAttribute="leading" secondItem="dy3-1r-Zy1" secondAttribute="leading" id="qiG-v5-kEj"/>
                             <constraint firstAttribute="trailing" secondItem="RJR-EN-HcG" secondAttribute="trailing" id="rbn-El-yuO"/>
+                            <constraint firstItem="Ppq-EK-wea" firstAttribute="leading" secondItem="dy3-1r-Zy1" secondAttribute="leading" id="wqj-JN-I7K"/>
                             <constraint firstItem="RJR-EN-HcG" firstAttribute="top" secondItem="wbH-nf-dwo" secondAttribute="bottom" id="zOZ-vc-W04"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="iqu-04-oiF"/>
+                    <navigationItem key="navigationItem" id="iqu-04-oiF">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="fLn-N1-QTd">
+                            <connections>
+                                <action selector="buttonRefreshTapped:" destination="p5D-v4-oWm" id="Mfa-ic-zKb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicatorView" destination="nUV-VC-5gz" id="3bx-uX-IdR"/>
                         <outlet property="collectionView" destination="tv4-qw-vb7" id="eHp-iz-OoN"/>
                         <outlet property="searchBar" destination="RJR-EN-HcG" id="2t5-vf-2nc"/>
+                        <outlet property="worldInfoLabel" destination="Ppq-EK-wea" id="1kf-8q-IFH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17q-dQ-boI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
