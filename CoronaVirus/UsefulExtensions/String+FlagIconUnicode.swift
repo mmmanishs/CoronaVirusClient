@@ -163,6 +163,7 @@ extension String {
         case "Eswatini": return "🇸🇿"
         case "Togo": return "🇹🇬"
         case "U.S. Virgin Islands": return "🇻🇮"
+        case "Mozambique": return "🇲🇿"
         default: return "🏳"
         }
     }
