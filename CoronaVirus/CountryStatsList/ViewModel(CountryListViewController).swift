@@ -52,7 +52,7 @@ extension CountryListViewController {
             case 0:
                 return bookmarkedRows.count
             case 1:
-                return rows.count
+                return nonBookmarkedRows.count
             default: return 0
             }
         }
