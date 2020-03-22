@@ -29,10 +29,11 @@ extension CountryListViewController: UICollectionViewDelegate, UICollectionViewD
         }
         return UICollectionReusableView()
     }
-    
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
     }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.numberOfRows(for: section)
     }

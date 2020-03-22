@@ -11,8 +11,9 @@ import Foundation
 extension CountryListViewController {
     struct ViewModel {
         var worldSummary: String = ""
-        var rows: [Row]
-        var bookmarkedRows: [Row] = []
+        private var rows: [Row]
+        private var nonBookmarkedRows: [Row] = []
+        private var bookmarkedRows: [Row] = []
         var numberOfRows: Int {
             return rows.count
         }
@@ -31,7 +32,7 @@ extension CountryListViewController {
             case 0:
                 return bookmarkedRows[indexPath.row]
             case 1:
-                return rows[indexPath.row]
+                return nonBookmarkedRows[indexPath.row]
             default: return Row.empty()
             }
         }
@@ -45,7 +46,6 @@ extension CountryListViewController {
             default: return "Something is wrong with the app"
             }
         }
-
 
         func numberOfRows(for section: Int) -> Int {
             switch section {
@@ -75,6 +75,7 @@ extension CountryListViewController.ViewModel {
             self.worldSummary = "Cases \(worldSummary.cases), deaths: \(worldSummary.deaths), recovered: \(worldSummary.recovered)"
         }
         bookmarkedRows = rows.filter {$0.isBookmarked}
+        nonBookmarkedRows = rows.filter {!$0.isBookmarked}
     }
 
     func reload() -> CountryListViewController.ViewModel {
@@ -87,6 +88,7 @@ extension CountryListViewController.ViewModel {
         }
         newViewModel.rows = newRows
         newViewModel.bookmarkedRows = newRows.filter {$0.isBookmarked}
+        newViewModel.nonBookmarkedRows = newRows.filter {!$0.isBookmarked}
         return newViewModel
     }
 }
